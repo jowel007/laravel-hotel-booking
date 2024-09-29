@@ -33,7 +33,8 @@
 
                         <section class="checkout-area pb-70">
                             <div class="container">
-                                <form>
+                                <form action="{{ route('profile.store') }}" method="post" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <div class="billing-details">
@@ -83,7 +84,7 @@
                                                             <h6 class="mb-0"></h6>
                                                         </div>
                                                         <div class="col-sm-9 text-secondary">
-                                                            <img id="showimage" src="{{ (!empty($profileData->photo)) ? url('upload/admin_image/'.$profileData->photo) : url('upload/no_image.jpg') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                                                            <img id="showimage" src="{{ (!empty($profileData->photo)) ? url('upload/user_image/'.$profileData->photo) : url('upload/no_image.jpg') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
                                                         </div>
                                                     </div>
 
