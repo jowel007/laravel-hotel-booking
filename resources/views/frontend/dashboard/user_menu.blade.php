@@ -1,10 +1,14 @@
 <div class="service-side-bar">
 
+    @php
+        $id = Auth::user()->id;
+        $profileData = App\Models\User::find($id);
+    @endphp
 
     <div class="services-bar-widget">
         <h3 class="title">User Dashboard</h3>
         <div class="side-bar-categories">
-            <img src="assets/img/blog/blog-profile1.jpg" class="rounded mx-auto d-block" alt="Image"
+            <img src="{{ (!empty($profileData->photo)) ? url('upload/user_image/'.$profileData->photo) : url('upload/no_image.jpg') }}" class="rounded mx-auto d-block" alt="Image"
                 style="width:100px; height:100px;"> <br><br>
 
             <ul>
