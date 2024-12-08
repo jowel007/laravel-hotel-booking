@@ -8,7 +8,7 @@
 					<div class="ps-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
-								<button type="button" class="btn btn-outline-warning px-7 radius-30">Create Team</button>
+								<a href="{{ route('add.team') }}" class="btn btn-info px-3 radius-30">Create Team</a>
 							</ol>
 						</nav>
 					</div>
@@ -34,23 +34,31 @@
 							<table id="example" class="table table-striped table-bordered" style="width:100%">
 								<thead>
 									<tr>
+										<th>Sl</th>
+										<th>Image</th>
 										<th>Name</th>
 										<th>Position</th>
-										<th>Office</th>
-										<th>Age</th>
-										<th>Start date</th>
-										<th>Salary</th>
+										<th>Facebook</th>
+										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>Tiger Nixon</td>
-										<td>System Architect</td>
-										<td>Edinburgh</td>
-										<td>61</td>
-										<td>2011/04/25</td>
-										<td>$320,800</td>
+                                    @foreach ($team as $key=>$item)
+                                    <tr>
+										<td>{{ $key+1 }}</td>
+										<td>
+                                            <img src="{{ (!empty($item->image)) ? url('upload/team_image/'.$item->image) : url('upload/no_image.jpg') }}" style="width: 70px; height:50px" alt="" srcset="">
+                                        </td>
+										<td>{{ $item->name }}</td>
+										<td>{{ $item->position }}</td>
+										<td>{{ $item->facebook }}</td>
+										<td>
+                                            <a href="" class="btn btn-warning px-3 radius-30">Edit</a>
+                                            <a href="" class="btn btn-warning px-3 radius-30">Delete</a>
+                                        </td>
 									</tr>
+                                    @endforeach
+
 
 								</tbody>
 
