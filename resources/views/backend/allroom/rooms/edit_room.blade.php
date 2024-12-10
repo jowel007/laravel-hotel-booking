@@ -113,56 +113,15 @@
 
 
                                                     <div class="col-md-12">
-                                                        <label for="input5" class="form-label">Password</label>
-                                                        <input type="password" class="form-control" id="input5"
-                                                            placeholder="Password">
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <label for="input6" class="form-label">DOB</label>
-                                                        <input type="date" class="form-control" id="input6"
-                                                            placeholder="Date of Birth">
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <label for="input7" class="form-label">Country</label>
-                                                        <select id="input7" class="form-select">
-                                                            <option selected="">Choose...</option>
-                                                            <option>One</option>
-                                                            <option>Two</option>
-                                                            <option>Three</option>
-                                                        </select>
+                                                        <label for="input11" class="form-label">Short Description</label>
+                                                        <textarea class="form-control" id="input11" name="short_desc" rows="3">{{ $editData->short_desc }}</textarea>
                                                     </div>
 
-                                                    <div class="col-md-6">
-                                                        <label for="input8" class="form-label">City</label>
-                                                        <input type="text" class="form-control" id="input8"
-                                                            placeholder="City">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label for="input9" class="form-label">State</label>
-                                                        <select id="input9" class="form-select">
-                                                            <option selected="">Choose...</option>
-                                                            <option>One</option>
-                                                            <option>Two</option>
-                                                            <option>Three</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <label for="input10" class="form-label">Zip</label>
-                                                        <input type="text" class="form-control" id="input10"
-                                                            placeholder="Zip">
-                                                    </div>
                                                     <div class="col-md-12">
-                                                        <label for="input11" class="form-label">Address</label>
-                                                        <textarea class="form-control" id="input11" placeholder="Address ..." rows="3"></textarea>
+                                                        <label for="input11" class="form-label"> Description</label>
+                                                        <textarea class="form-control" id="myeditorinstance" placeholder="Address ..." rows="3">{!! $editData->short_desc !!}</textarea>
                                                     </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                id="input12">
-                                                            <label class="form-check-label" for="input12">Check me
-                                                                out</label>
-                                                        </div>
-                                                    </div>
+
                                                     <div class="col-md-12">
                                                         <div class="d-md-flex d-grid align-items-center gap-3">
                                                             <button type="button"
