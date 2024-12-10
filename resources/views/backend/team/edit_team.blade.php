@@ -4,13 +4,13 @@
 <div class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">Team Add</div>
+        <div class="breadcrumb-title pe-3">Team Edit</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Team Add</li>
+                    <li class="breadcrumb-item active" aria-current="page">Team Edit</li>
                 </ol>
             </nav>
         </div>
@@ -23,31 +23,34 @@
 
                 <div class="col-lg-8">
                     <div class="card">
-                        <form id="myForm" action="{{ route('store.team') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('update.team') }}" method="post" enctype="multipart/form-data">
                             @csrf
+
+                            <input type="hidden" name="id" value="{{ $team->id }}" >
+
                         <div class="card-body">
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0"> Name</h6>
                                 </div>
-                                <div class="form-group col-sm-9 text-secondary">
-                                    <input type="text" name="name" class="form-control" value="" />
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="name" value="{{ $team->name }}" class="form-control" value="" />
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Position</h6>
                                 </div>
-                                <div class="form-group col-sm-9 text-secondary">
-                                    <input type="text" name="position" class="form-control" value="" />
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="position" value="{{ $team->position }}" class="form-control" value="" />
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Facebook</h6>
                                 </div>
-                                <div class="form-group col-sm-9 text-secondary">
-                                    <input type="text" name="facebook" class="form-control" value="" />
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="facebook" value="{{ $team->facebook }}" class="form-control" value="" />
                                 </div>
                             </div>
 
@@ -56,7 +59,7 @@
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Image</h6>
                                 </div>
-                                <div class="form-group col-sm-9 text-secondary">
+                                <div class="col-sm-9 text-secondary">
                                     <input type="file" id="image" name="image" class="form-control" value="" />
                                 </div>
                             </div>
@@ -66,7 +69,7 @@
                                     <h6 class="mb-0"></h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <img id="showimage" src="{{ url('upload/no_image.jpg') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                                    <img id="showimage" src="{{ (!empty($team->image)) ? url('upload/team_image/'.$team->image) : url('upload/no_image.jpg') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
                                 </div>
                             </div>
 
@@ -86,57 +89,6 @@
     </div>
 </div>
 
-
-<script type="text/javascript">
-    $(document).ready(function (){
-        $('#myForm').validate({
-            rules: {
-                name: {
-                    required : true,
-                },
-                position: {
-                    required : true,
-                },
-                facebook: {
-                    required : true,
-                },
-                image: {
-                    required : true,
-                },
-
-            },
-            messages :{
-                name: {
-                    required : 'Please Enter Team Name',
-                },
-                position: {
-                    required : 'Please Enter Position Name',
-                },
-                facebook: {
-                    required : 'Please Enter Facebook Link',
-                },
-                image: {
-                    required : 'Please Enter Image',
-                },
-
-
-            },
-            errorElement : 'span',
-            errorPlacement: function (error,element) {
-                error.addClass('invalid-feedback');
-                element.closest('.form-group').append(error);
-            },
-            highlight : function(element, errorClass, validClass){
-                $(element).addClass('is-invalid');
-            },
-            unhighlight : function(element, errorClass, validClass){
-                $(element).removeClass('is-invalid');
-            },
-        });
-    });
-
-</script>
-
 <script type="text/javascript">
     $(document).ready(function(){
         $('#image').change(function(e) {
@@ -148,6 +100,5 @@
         });
     });
 </script>
-
 
 @endsection

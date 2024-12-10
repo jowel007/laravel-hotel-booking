@@ -8,14 +8,14 @@
 					<div class="ps-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
-								<a href="{{ route('add.team') }}" class="btn btn-info px-3 radius-30">Create Team</a>
+								<a href="{{ route('add.room.type') }}" class="btn btn-info px-3 radius-30">Add Room Type</a>
 							</ol>
 						</nav>
 					</div>
 
 				</div>
 				<!--end breadcrumb-->
-				<h6 class="mb-0 text-uppercase">ALL Team</h6>
+				<h6 class="mb-0 text-uppercase">ALL Book Type</h6>
 				<hr/>
 				<div class="card">
 					<div class="card-body">
@@ -26,21 +26,17 @@
 										<th>Sl</th>
 										<th>Image</th>
 										<th>Name</th>
-										<th>Position</th>
-										<th>Facebook</th>
 										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
-                                    @foreach ($team as $key=>$item)
+                                    @foreach ($allData as $key=>$item)
                                     <tr>
 										<td>{{ $key+1 }}</td>
 										<td>
-                                            <img src="{{ (!empty($item->image)) ? url('upload/team_image/'.$item->image) : url('upload/no_image.jpg') }}" style="width: 70px; height:50px" alt="" srcset="">
+                                            <img src="{{ (!empty($allData->image)) ? url('upload/team_image/'.$allData->image) : url('upload/no_image.jpg') }}" style="width: 70px; height:50px" alt="" srcset="">
                                         </td>
 										<td>{{ $item->name }}</td>
-										<td>{{ $item->position }}</td>
-										<td>{{ $item->facebook }}</td>
 										<td>
                                             <a href="{{ route('edit.team',$item->id) }}" class="btn btn-warning px-3 radius-30">Edit</a>
                                             <a href="{{ route('delete.team',$item->id) }}" class="btn btn-danger px-3 radius-30">Delete</a>
