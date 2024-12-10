@@ -34,25 +34,25 @@
                                     <input type="text" name="name" class="form-control" value="" />
                                 </div>
                             </div>
-                            
-                            
-                            <div class="row mb-3">
+
+
+                            {{-- <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Image</h6>
                                 </div>
                                 <div class="form-group col-sm-9 text-secondary">
                                     <input type="file" id="image" name="image" class="form-control" value="" />
                                 </div>
-                            </div>
+                            </div> --}}
 
-                            <div class="row mb-3">
+                            {{-- <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0"></h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <img id="showimage" src="{{ url('upload/no_image.jpg') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="row">
                                 <div class="col-sm-3"></div>

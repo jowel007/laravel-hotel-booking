@@ -31,11 +31,19 @@
 								</thead>
 								<tbody>
                                     @foreach ($allData as $key=>$item)
+
+                                    @php
+                                        $rooms = App\Models\Room::where('roomtype_id',$item->id)->get();
+                                    @endphp
+
                                     <tr>
 										<td>{{ $key+1 }}</td>
-										<td>
-                                            <img src="{{ (!empty($allData->image)) ? url('upload/team_image/'.$allData->image) : url('upload/no_image.jpg') }}" style="width: 70px; height:50px" alt="" srcset="">
+                                        <td>
+                                            <img src="{{ (!empty($item->room->image)) ? url('upload/room_image/'.$item->room->image) : url('upload/no_image.jpg') }}" style="width: 70px; height:50px" alt="" srcset="">
                                         </td>
+										{{-- <td>
+                                            <img src="{{ (!empty($allData->image)) ? url('upload/team_image/'.$allData->image) : url('upload/no_image.jpg') }}" style="width: 70px; height:50px" alt="" srcset="">
+                                        </td> --}}
 										<td>{{ $item->name }}</td>
 										<td>
                                             <a href="{{ route('edit.team',$item->id) }}" class="btn btn-warning px-3 radius-30">Edit</a>
