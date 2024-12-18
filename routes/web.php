@@ -69,6 +69,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     // Room all route
     Route::controller(RoomController::class)->group(function(){
         Route::get('/edit/room/{id}', 'EditRoom')->name('edit.room');
+        Route::post('/update/room/{id}', 'UpdateRoom')->name('update.room');
 
     });
 

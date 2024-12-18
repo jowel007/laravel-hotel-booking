@@ -39,7 +39,8 @@
                                         <div class="card">
                                             <div class="card-body p-4">
                                                 <h5 class="mb-4">Update Room</h5>
-                                                <form class="row g-3">
+                                                <form class="row g-3" action="{{ route('update.room',$editData->id) }}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
                                                     <div class="col-md-4">
                                                         <label for="input1" class="form-label">Room Type Name</label>
                                                         <input type="text" name="roomtype_id"
@@ -77,19 +78,26 @@
                                                         <div class="row" id="preview_img"></div>
                                                     </div>
 
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <label for="input1" class="form-label">Price</label>
                                                         <input type="text" name="price" value="{{ $editData->price }}"
                                                             class="form-control" id="input1">
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <label for="input2" class="form-label">Discount ( % )</label>
                                                         <input type="text" name="discount"
                                                             value="{{ $editData->discount }}" class="form-control"
                                                             id="input2">
                                                     </div>
 
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
+                                                        <label for="input2" class="form-label">Size</label>
+                                                        <input type="text" name="size"
+                                                            value="{{ $editData->size }}" class="form-control"
+                                                            id="input2">
+                                                    </div>
+
+                                                    <div class="col-md-3">
                                                         <label for="input2" class="form-label">Room Capacity</label>
                                                         <input type="text" name="room_capacity"
                                                             value="{{ $editData->room_capacity }}" class="form-control"
@@ -124,7 +132,7 @@
 
                                                     <div class="col-md-12">
                                                         <label for="input11" class="form-label"> Description</label>
-                                                        <textarea class="form-control" id="myeditorinstance" placeholder="Address ..." rows="3">{!! $editData->short_desc !!}</textarea>
+                                                        <textarea class="form-control" id="myeditorinstance" placeholder="Address ..." rows="3">{!! $editData->description !!}</textarea>
                                                     </div>
 
                                                     <div class="row mt-2">
