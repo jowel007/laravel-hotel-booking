@@ -1,6 +1,6 @@
 @extends('admin.admin_dashboard')
 @section('admin')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <div class="page-content">
 
         <div class="container">
@@ -63,13 +63,19 @@
                                                     <div class="col-md-6">
                                                         <label for="input3" class="form-label">Main Image</label>
                                                         <input type="file" name="image" class="form-control"
-                                                            id="input3">
+                                                            id="image">
+                                                        <img id="showImage"
+                                                            src="{{ !empty($editData->image) ? url('upload/room_image/' . $editData->image) : url('upload/no_image.jpg') }}"
+                                                            alt="Admin" class=" p-1 bg-primary"
+                                                            width="80">
+
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label for="input4" class="form-label">Gallery Image</label>
                                                         <input type="file" name="multi_image[]" class="form-control"
-                                                            id="MultiImg"
+                                                            id="multiImg" multiple
                                                             accept="image/jpeg, image/jpg, image/gif, image/png">
+                                                        <div class="row" id="preview_img"></div>
                                                     </div>
 
                                                     <div class="col-md-4">
@@ -125,9 +131,8 @@
                                                     <div class="col-md-12">
                                                         <div class="d-md-flex d-grid align-items-center gap-3">
                                                             <button type="button"
-                                                                class="btn btn-primary px-4">Submit</button>
-                                                            <button type="button"
-                                                                class="btn btn-light px-4">Reset</button>
+                                                                class="btn btn-primary px-4">Save Data</button>
+
                                                         </div>
                                                     </div>
                                                 </form>
@@ -137,17 +142,7 @@
                                     </div>
 
                                 </div>
-                                <div class="tab-pane fade" id="primaryprofile" role="tabpanel">
-                                    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee
-                                        squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes
-                                        anderson artisan four loko farm-to-table craft beer twee. Qui photo booth
-                                        letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
-                                        cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
-                                        Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan
-                                        fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY
-                                        ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr
-                                        butcher vero sint qui sapiente accusamus tattooed echo park.</p>
-                                </div>
+
 
                             </div>
                         </div>
@@ -164,10 +159,39 @@
             $('#image').change(function(e) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    $('#showimage').attr('src', e.target.result);
+                    $('#showImage').attr('src', e.target.result);
                 }
                 reader.readAsDataURL(e.target.files['0']);
             });
         });
     </script>
+
+    <!--------===Show MultiImage ========------->
+<script>
+    $(document).ready(function(){
+     $('#multiImg').on('change', function(){ //on file input change
+        if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
+        {
+            var data = $(this)[0].files; //this file data
+
+            $.each(data, function(index, file){ //loop though each file
+                if(/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)){ //check supported file type
+                    var fRead = new FileReader(); //new filereader
+                    fRead.onload = (function(file){ //trigger function on successful read
+                    return function(e) {
+                        var img = $('<img/>').addClass('thumb').attr('src', e.target.result) .width(100)
+                    .height(80); //create image element
+                        $('#preview_img').append(img); //append image to output element
+                    };
+                    })(file);
+                    fRead.readAsDataURL(file); //URL representing the file's data.
+                }
+            });
+
+        }else{
+            alert("Your browser doesn't support File API!"); //if File API is absent
+        }
+     });
+    });
+ </script>
 @endsection
